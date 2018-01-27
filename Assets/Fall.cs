@@ -32,8 +32,11 @@ public class Fall : MonoBehaviour {
         {
             return true;
         }
-        if (currentX == 0 || CustomGrid.instance.filled[currentY, currentX-1] != -1)
+        if (currentX == 0 || CustomGrid.instance.filled[currentY, currentX - 1] != -1)
+        {
+            SoundManager.instance.FallSound();
             return false;
+        }
         else
             return true;
     }
@@ -43,8 +46,11 @@ public class Fall : MonoBehaviour {
         {
             return true;
         }
-        if (currentX >= CustomGrid.instance.Width-1 || CustomGrid.instance.filled[currentY, currentX+1] != -1)
+        if (currentX >= CustomGrid.instance.Width - 1 || CustomGrid.instance.filled[currentY, currentX + 1] != -1)
+        {
+            SoundManager.instance.FallSound();
             return false;
+        }
         else
             return true;
     }

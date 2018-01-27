@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
@@ -333,8 +334,11 @@ new byte[,] {{1,1,},{3,3,},},
 new byte[,] {{1,},{1,},{1,},{1,},},
 new byte[,] {{1,1,},{1,1,},},
 };
-	// Use this for initialization
-	void Start () {
+
+    public object SceneM { get; private set; }
+
+    // Use this for initialization
+    void Start () {
         if (instance==null)
         {
             instance = this;
@@ -343,6 +347,15 @@ new byte[,] {{1,1,},{1,1,},},
         {
             Destroy(this);
         }
+        if (!PlayerPrefs.HasKey("Highscore"))
+        {
+            PlayerPrefs.SetInt("Highscore", 0);
+        }
+        else
+        {
+            HighScore.text = "Highscore: " + PlayerPrefs.GetInt("Highscore");
+        }
+
         CreateDictionary();
         ConstructBlock();
         //InstantiateBlock();
@@ -383,6 +396,7 @@ new byte[,] {{1,1,},{1,1,},},
         {
             CurrentBlock.transform.GetChild(i).GetComponent<Fall>().currentX -= 1;           
         }
+        SoundManager.instance.MoveSound();
     }
     private void MoveRight()
     {
@@ -396,6 +410,7 @@ new byte[,] {{1,1,},{1,1,},},
         {
             CurrentBlock.transform.GetChild(i).GetComponent<Fall>().currentX += 1;
         }
+        SoundManager.instance.MoveSound();
     }
     public void printGrid()
     {
@@ -445,5 +460,26 @@ new byte[,] {{1,1,},{1,1,},},
         Colors.Add(8, new Color32(91, 101, 126, 255));
         Colors.Add(9, new Color32(166, 30, 32, 255));
         Colors.Add(10, new Color32(100, 46, 20, 255));
+    }
+    public void SaveScore()
+    {
+        if (Score>PlayerPrefs.GetInt("Highscore"))
+        {
+            PlayerPrefs.SetInt("Highscore", Score);
+        }      
+    }
+    public void CheckForWin()
+    {
+        for (int i = 0; i < CustomGrid.instance.filled.GetLength(0); i++)
+        {
+            for (int j = 0; j < CustomGrid.instance.filled.GetLength(1); j++)
+            {
+                if (CustomGrid.instance.filled[i,j]==0)
+                {
+                    return;
+                }
+            }
+        }
+        SceneManager.LoadScene("EndWin");
     }
 }
