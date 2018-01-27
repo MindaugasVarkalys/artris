@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour {
     private GameObject CurrentBlock;
     public GameObject FillingTile;
     private Dictionary<int, Color> Colors;
-    private byte[,] FullPicture = {
+    public byte[,] FullPicture = {
         {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,},
 {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,},
 {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,},
@@ -144,6 +144,7 @@ public class GameManager : MonoBehaviour {
                 GameObject tile=Instantiate(FillingTile, CustomGrid.instance.GetPosition(CustomGrid.instance.Width / 2 + i, CustomGrid.instance.Height + j), Quaternion.identity,CurrentBlock.transform);
                 tile.GetComponent<Fall>().currentX = CustomGrid.instance.Width / 2 + i;
                 tile.GetComponent<Fall>().currentY = CustomGrid.instance.Height + j;
+                tile.GetComponent<Fall>().color = array[i, j];
                 tile.GetComponent<SpriteRenderer>().color = Colors[array[i,j]];
             }
         }

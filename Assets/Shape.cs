@@ -38,7 +38,12 @@ public class Shape : MonoBehaviour {
     {       
         for (int i = 0; i < transform.childCount; i++)
         {
-            CustomGrid.instance.filled[transform.GetChild(i).GetComponent<Fall>().currentX, transform.GetChild(i).GetComponent<Fall>().currentY] = 1;//color number
+            int blockColor = transform.GetChild(i).GetComponent<Fall>().color;
+            if (blockColor!=GameManager.instance.FullPicture[transform.GetChild(i).GetComponent<Fall>().currentX, transform.GetChild(i).GetComponent<Fall>().currentY])
+            {
+                Debug.Log("You lose!!");
+            }
+            CustomGrid.instance.filled[transform.GetChild(i).GetComponent<Fall>().currentX, transform.GetChild(i).GetComponent<Fall>().currentY] = blockColor;//color number
         }
     }
 }

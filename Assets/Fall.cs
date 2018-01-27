@@ -5,6 +5,7 @@ using UnityEngine;
 public class Fall : MonoBehaviour {
     public int currentX = 5;
     public int currentY = 10;
+    public int color;
 	// Use this for initialization
 	void Start () {
        
