@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
     private GameObject CurrentBlock;
     public GameObject FillingTile;
     private Dictionary<int, Color> Colors;
+    private int counter = 0;
     public byte[,] FullPicture = {
         {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,},
 {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,},
@@ -55,6 +56,69 @@ public class GameManager : MonoBehaviour {
 {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,},
 {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,},
 {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,}};
+    public byte[][,] blocks = new byte[][,]{new byte[,] {{1,1,},{1,1,},},
+new byte[,] {{1,0,0,},{6,1,1,},},
+new byte[,] {{1,1,0,},{0,6,6,},},
+new byte[,] {{3,0,0,},{3,6,6,},},
+new byte[,] {{1,1,},{6,6,},},
+new byte[,] {{4,4,1,},{0,0,6,},},
+new byte[,] {{1,0,0,},{6,6,6,},},
+new byte[,] {{8,1,},{10,10,},},
+new byte[,] {{4,0,0,},{4,10,10,},},
+new byte[,] {{8,1,},{1,1,},},
+new byte[,] {{1,8,},{1,8,},},
+new byte[,] {{1,1,},{1,1,},},
+new byte[,] {{1,0,},{4,4,},{0,6,},},
+new byte[,] {{1,1,1,},{8,0,0,},},
+new byte[,] {{1,0,},{1,0,},{3,3,},},
+new byte[,] {{4,8,},{4,8,},},
+new byte[,] {{1,4,},{4,0,},{4,0,},},
+new byte[,] {{4,},{4,},{1,},{6,},},
+new byte[,] {{1,8,},{0,8,},{0,3,},},
+new byte[,] {{4,1,1,},{0,0,1,},},
+new byte[,] {{4,0,0,},{4,4,1,},},
+new byte[,] {{1,1,},{1,1,},},
+new byte[,] {{4,4,1,},{0,0,1,},},
+new byte[,] {{8,},{8,},{8,},{8,},},
+new byte[,] {{1,0,},{1,1,},{0,1,},},
+new byte[,] {{1,1,},{1,1,},},
+new byte[,] {{8,0,},{8,1,},{8,0,},},
+new byte[,] {{4,4,},{0,1,},{0,1,},},
+new byte[,] {{8,0,},{8,0,},{8,1,},},
+new byte[,] {{1,0,},{1,0,},{1,1,},},
+new byte[,] {{1,},{1,},{1,},{1,},},
+new byte[,] {{4,},{1,},{1,},{1,},},
+new byte[,] {{4,},{4,},{4,},{4,},},
+new byte[,] {{4,0,},{1,1,},{0,1,},},
+new byte[,] {{4,4,4,},{0,0,1,},},
+new byte[,] {{4,0,0,},{4,1,1,},},
+new byte[,] {{4,4,4,},{0,0,1,},},
+new byte[,] {{8,0,},{8,4,},{4,0,},},
+new byte[,] {{8,0,},{8,0,},{8,1,},},
+new byte[,] {{1,1,},{0,1,},{0,1,},},
+new byte[,] {{4,0,},{4,1,},{0,1,},},
+new byte[,] {{4,},{4,},{1,},{1,},},
+new byte[,] {{4,4,},{0,4,},{0,4,},},
+new byte[,] {{4,0,0,},{4,4,4,},},
+new byte[,] {{4,4,},{0,4,},{0,1,},},
+new byte[,] {{8,0,},{8,4,},{0,4,},},
+new byte[,] {{1,1,},{0,8,},{0,8,},},
+new byte[,] {{1,1,},{0,1,},{0,1,},},
+new byte[,] {{1,1,},{1,1,},},
+new byte[,] {{1,1,1,},{4,0,0,},},
+new byte[,] {{1,1,1,},{4,0,0,},},
+new byte[,] {{1,1,1,},{0,0,4,},},
+new byte[,] {{1,0,},{4,4,},{4,0,},},
+new byte[,] {{1,},{4,},{4,},{8,},},
+new byte[,] {{1,1,},{4,4,},},
+new byte[,] {{1,1,},{4,4,},},
+new byte[,] {{1,},{4,},{4,},{4,},},
+new byte[,] {{1,1,1,},{4,0,0,},},
+new byte[,] {{1,1,},{8,8,},},
+new byte[,] {{1,1,1,},{0,8,0,},},
+new byte[,] {{1,1,},{1,0,},{1,0,},},
+new byte[,] {{1,1,1,},{1,0,0,}}
+};
 	// Use this for initialization
 	void Start () {
         if (instance==null)
@@ -135,7 +199,7 @@ public class GameManager : MonoBehaviour {
     }
     private void ConstructBlock()
     {
-        int[,] array= { { 1,0,8 }, { 2,3,9 }, { 4,5,10 }, { 6,7,0 } };
+        byte[,] array= blocks[counter++];
         CurrentBlock = Instantiate(Block, CustomGrid.instance.GetPosition(CustomGrid.instance.Height/2, CustomGrid.instance.Width), Quaternion.identity);
         for (int i = 0; i < array.GetLength(0); i++)
         {
@@ -145,9 +209,9 @@ public class GameManager : MonoBehaviour {
                 {
                     continue;
                 }
-                GameObject tile=Instantiate(FillingTile, CustomGrid.instance.GetPosition(CustomGrid.instance.Height / 2 + i, CustomGrid.instance.Width + j), Quaternion.identity,CurrentBlock.transform);
-                tile.GetComponent<Fall>().currentX = CustomGrid.instance.Height / 2 + i;
-                tile.GetComponent<Fall>().currentY = CustomGrid.instance.Width + j;
+                GameObject tile=Instantiate(FillingTile, CustomGrid.instance.GetPosition(CustomGrid.instance.Width / 2 + j, CustomGrid.instance.Height - i), Quaternion.identity,CurrentBlock.transform);
+                tile.GetComponent<Fall>().currentX = CustomGrid.instance.Width / 2 + j;
+                tile.GetComponent<Fall>().currentY = CustomGrid.instance.Height - i;
                 tile.GetComponent<Fall>().color = array[i, j];
                 tile.GetComponent<SpriteRenderer>().color = Colors[array[i,j]];
             }
