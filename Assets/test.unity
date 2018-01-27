@@ -193,8 +193,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 203867106}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: 50, y: -5, z: -2.0578651}
-  m_LocalScale: {x: 10, y: 1, z: 1}
+  m_LocalPosition: {x: 230, y: -5, z: 0}
+  m_LocalScale: {x: 46, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -279,8 +279,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 590370336}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: 105, y: 50, z: -2.0578651}
-  m_LocalScale: {x: 1, y: 1, z: 10}
+  m_LocalPosition: {x: 465, y: 230, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 46}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -325,8 +325,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4443b9559ed989d47bfb193787e216bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Width: 10
-  Height: 10
+  Width: 46
+  Height: 46
   TileHeight: 10
   TileWidth: 10
 --- !u!1 &1153913922
@@ -381,7 +381,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 80
+  orthographic size: 300
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -404,7 +404,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1153913922}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 44.24, y: 56.17, z: -10}
+  m_LocalPosition: {x: 205.07, y: 276.32, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -490,8 +490,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1334807030}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -5, y: 50, z: -2.0578651}
-  m_LocalScale: {x: 1, y: 1, z: 10}
+  m_LocalPosition: {x: -5, y: 230, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 46}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -523,8 +523,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73ffd5b56f048d5418d77e412ffc2097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Block: {fileID: 1961574569739784, guid: 6cf6b867e3daf99409295d03e90f0c59, type: 2}
-  CurrentBlock: {fileID: 0}
+  Block: {fileID: 1186316547852228, guid: 2271ca071cff7ce489bd609ef08a4cb1, type: 2}
+  FillingTile: {fileID: 1060703438693452, guid: 85912327ad49bce4593f488cf922d965,
+    type: 2}
 --- !u!4 &1676909936
 Transform:
   m_ObjectHideFlags: 0

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Shape : MonoBehaviour {
     private bool canSpawn = true;
-    public bool canMoveDown = true;
+
 	// Use this for initialization
 	void Start () {
-        InvokeRepeating("StartMovement", 1, 1);
+        InvokeRepeating("StartMovement", 0.7f, 0.7f);
     }
     public void StartMovement()
     {

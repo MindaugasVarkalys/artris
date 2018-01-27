@@ -27,6 +27,10 @@ public class Fall : MonoBehaviour {
     }
     public bool CanMoveLeft()
     {
+        if (currentY>=CustomGrid.instance.Height&&currentX>0)
+        {
+            return true;
+        }
         if (currentX == 0 || CustomGrid.instance.filled[currentX - 1, currentY] != -1)
             return false;
         else
@@ -34,6 +38,10 @@ public class Fall : MonoBehaviour {
     }
     public bool CanMoveRight()
     {
+        if (currentY >= CustomGrid.instance.Height && currentX < CustomGrid.instance.Width)
+        {
+            return true;
+        }
         if (currentX == CustomGrid.instance.Width-1 || CustomGrid.instance.filled[currentX +1, currentY] != -1)
             return false;
         else
@@ -41,6 +49,10 @@ public class Fall : MonoBehaviour {
     }
     public bool CanMoveDown()
     {
+        if (currentY>CustomGrid.instance.Height)
+        {
+            return true;
+        }
         if (currentY == 0 || CustomGrid.instance.filled[currentX, currentY - 1] != -1)
             return false;
         else

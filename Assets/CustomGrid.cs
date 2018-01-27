@@ -33,7 +33,7 @@ public class CustomGrid : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
-        Height += 4;
+        //Height += 4;
         if (instance==null)
         {
             instance = this;
