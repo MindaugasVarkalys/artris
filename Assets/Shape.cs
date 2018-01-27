@@ -39,7 +39,7 @@ public class Shape : MonoBehaviour {
         for (int i = 0; i < transform.childCount; i++)
         {
             int blockColor = transform.GetChild(i).GetComponent<Fall>().color;
-            if (blockColor!=GameManager.instance.FullPicture[transform.GetChild(i).GetComponent<Fall>().currentX, transform.GetChild(i).GetComponent<Fall>().currentY])
+            if (blockColor!=GameManager.instance.FullPicture[GameManager.instance.FullPicture.GetLength(0)-1-transform.GetChild(i).GetComponent<Fall>().currentY, transform.GetChild(i).GetComponent<Fall>().currentX])
             {
                 Debug.Log("You lose!!");
             }
