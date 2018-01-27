@@ -343,6 +343,15 @@ new byte[,] {{1,1,},{1,1,},},
         {
             Destroy(this);
         }
+        if (!PlayerPrefs.HasKey("Highscore"))
+        {
+            PlayerPrefs.SetInt("Highscore", 0);
+        }
+        else
+        {
+            HighScore.text = "Highscore: " + PlayerPrefs.GetInt("Highscore");
+        }
+
         CreateDictionary();
         ConstructBlock();
         //InstantiateBlock();
@@ -447,5 +456,12 @@ new byte[,] {{1,1,},{1,1,},},
         Colors.Add(8, new Color32(91, 101, 126, 255));
         Colors.Add(9, new Color32(166, 30, 32, 255));
         Colors.Add(10, new Color32(100, 46, 20, 255));
+    }
+    public void SaveScore()
+    {
+        if (Score>PlayerPrefs.GetInt("Highscore"))
+        {
+            PlayerPrefs.SetInt("Highscore", Score);
+        }      
     }
 }

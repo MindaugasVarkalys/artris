@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Shape : MonoBehaviour {
     private bool canSpawn = true;
@@ -47,7 +48,10 @@ public class Shape : MonoBehaviour {
             int blockColor = transform.GetChild(i).GetComponent<Fall>().color;
             if (blockColor!=GameManager.instance.FullPicture[GameManager.instance.FullPicture.GetLength(0)-1-transform.GetChild(i).GetComponent<Fall>().currentY, transform.GetChild(i).GetComponent<Fall>().currentX])
             {
+                SoundManager.instance.LoseSound();
+                GameManager.instance.SaveScore();
                 Debug.Log("You lose!!");
+                SceneManager.LoadScene("EndLost");
             }
             CustomGrid.instance.filled[transform.GetChild(i).GetComponent<Fall>().currentY, transform.GetChild(i).GetComponent<Fall>().currentX] = blockColor;//color number
         }
