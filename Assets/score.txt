@@ -1,0 +1,12 @@
+public text score;
+
+
+
+on start: score.text  = "Score: " + scoreint; int scoreint = 0;
+
+
+funkcijoje, kuri tikrina ar gerai: if (good) { score.text  = "Score: " + scoreint; } else // game over
+
+
+
+
