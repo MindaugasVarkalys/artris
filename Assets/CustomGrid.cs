@@ -6,17 +6,17 @@ public class CustomGrid : MonoBehaviour {
 
     private void OnDrawGizmos()
     {
-        for (int i = 0; i <= Height; i++)
+        for (int i = 0; i <= Width; i++)
         {
             Vector3 from = new Vector3(transform.position.x, transform.position.y + TileHeight*i);
-            Vector3 to = new Vector3(transform.position.x + Width * TileWidth, transform.position.y + TileHeight*i);
+            Vector3 to = new Vector3(transform.position.x + Height * TileWidth, transform.position.y + TileHeight*i);
 
             Gizmos.DrawLine(from, to);
         }
-        for (int j = 0; j <= Width; j++)
+        for (int j = 0; j <= Height; j++)
         {
             Vector3 from = new Vector3(transform.position.x + j * TileWidth, transform.position.y);
-            Vector3 to = new Vector3(transform.position.x + j * TileWidth, transform.position.y + TileHeight * Height);
+            Vector3 to = new Vector3(transform.position.x + j * TileWidth, transform.position.y + TileHeight * Width);
 
             Gizmos.DrawLine(from, to);
         }
@@ -25,14 +25,15 @@ public class CustomGrid : MonoBehaviour {
         Gizmos.DrawCube(GetPosition(0,0), size);
     }
     public static CustomGrid instance;
-    public int Height = 10;
     public int Width = 10;
+    public int Height = 10;
     public int TileHeight = 10;
     public int TileWidth = 10;
     public int[,] filled;
 
     // Use this for initialization
     void Awake () {
+        Height += 4;
         if (instance==null)
         {
             instance = this;
@@ -41,10 +42,10 @@ public class CustomGrid : MonoBehaviour {
         {
             Destroy(this);
         }
-        filled = new int[Height, Width];
-        for (int i = 0; i < Height; i++)
+        filled = new int[Width, Height];
+        for (int i = 0; i < Width; i++)
         {
-            for (int j = 0; j < Width; j++)
+            for (int j = 0; j < Height; j++)
             {
                 filled[i, j] = -1;
             }
