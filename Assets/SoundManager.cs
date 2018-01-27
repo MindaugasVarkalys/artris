@@ -36,5 +36,9 @@ public class SoundManager : MonoBehaviour {
     {
         transform.GetComponents<AudioSource>()[4].Play();
     }
+    public void WinSound()
+    {
+        transform.GetComponents<AudioSource>()[5].Play();
+    }
 	
 }

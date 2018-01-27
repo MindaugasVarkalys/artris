@@ -480,6 +480,7 @@ new byte[,] {{1,1,},{1,1,},},
                 }
             }
         }
+        SoundManager.instance.WinSound();
         SceneManager.LoadScene("EndWin");
     }
 }
