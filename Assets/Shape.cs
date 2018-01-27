@@ -43,7 +43,7 @@ public class Shape : MonoBehaviour {
             {
                 Debug.Log("You lose!!");
             }
-            CustomGrid.instance.filled[transform.GetChild(i).GetComponent<Fall>().currentX, transform.GetChild(i).GetComponent<Fall>().currentY] = blockColor;//color number
+            CustomGrid.instance.filled[transform.GetChild(i).GetComponent<Fall>().currentY, transform.GetChild(i).GetComponent<Fall>().currentX] = blockColor;//color number
         }
     }
 }

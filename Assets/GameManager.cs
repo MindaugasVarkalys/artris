@@ -80,6 +80,10 @@ public class GameManager : MonoBehaviour {
         {
             MoveRight();
         }
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            CurrentBlock.GetComponent<Shape>().StartMovement();
+        }
     }
 
     public void InstantiateBlock()
@@ -118,10 +122,10 @@ public class GameManager : MonoBehaviour {
     public void printGrid()
     {
         string x = "";
-        for (int i = CustomGrid.instance.Height-1; i >=0 ; i--)
+        for (int i = CustomGrid.instance.Width-1; i >=0 ; i--)
         {
             
-            for (int j = 0; j < CustomGrid.instance.Width; j++)
+            for (int j = 0; j < CustomGrid.instance.Height; j++)
             {
                 x += CustomGrid.instance.filled[j, i];
             }
@@ -132,7 +136,7 @@ public class GameManager : MonoBehaviour {
     private void ConstructBlock()
     {
         int[,] array= { { 1,0,8 }, { 2,3,9 }, { 4,5,10 }, { 6,7,0 } };
-        CurrentBlock = Instantiate(Block, CustomGrid.instance.GetPosition(CustomGrid.instance.Width/2, CustomGrid.instance.Height), Quaternion.identity);
+        CurrentBlock = Instantiate(Block, CustomGrid.instance.GetPosition(CustomGrid.instance.Height/2, CustomGrid.instance.Width), Quaternion.identity);
         for (int i = 0; i < array.GetLength(0); i++)
         {
             for (int j = 0; j < array.GetLength(1); j++)
@@ -141,9 +145,9 @@ public class GameManager : MonoBehaviour {
                 {
                     continue;
                 }
-                GameObject tile=Instantiate(FillingTile, CustomGrid.instance.GetPosition(CustomGrid.instance.Width / 2 + i, CustomGrid.instance.Height + j), Quaternion.identity,CurrentBlock.transform);
-                tile.GetComponent<Fall>().currentX = CustomGrid.instance.Width / 2 + i;
-                tile.GetComponent<Fall>().currentY = CustomGrid.instance.Height + j;
+                GameObject tile=Instantiate(FillingTile, CustomGrid.instance.GetPosition(CustomGrid.instance.Height / 2 + i, CustomGrid.instance.Width + j), Quaternion.identity,CurrentBlock.transform);
+                tile.GetComponent<Fall>().currentX = CustomGrid.instance.Height / 2 + i;
+                tile.GetComponent<Fall>().currentY = CustomGrid.instance.Width + j;
                 tile.GetComponent<Fall>().color = array[i, j];
                 tile.GetComponent<SpriteRenderer>().color = Colors[array[i,j]];
             }

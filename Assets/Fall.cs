@@ -32,18 +32,18 @@ public class Fall : MonoBehaviour {
         {
             return true;
         }
-        if (currentX == 0 || CustomGrid.instance.filled[currentX - 1, currentY] != -1)
+        if (currentX == 0 || CustomGrid.instance.filled[currentY, currentX-1] != -1)
             return false;
         else
             return true;
     }
     public bool CanMoveRight()
     {
-        if (currentY >= CustomGrid.instance.Height && currentX < CustomGrid.instance.Width)
+        if (currentY >= CustomGrid.instance.Height && currentX < CustomGrid.instance.Width-1)
         {
             return true;
         }
-        if (currentX == CustomGrid.instance.Width-1 || CustomGrid.instance.filled[currentX +1, currentY] != -1)
+        if (currentX >= CustomGrid.instance.Width-1 || CustomGrid.instance.filled[currentY, currentX+1] != -1)
             return false;
         else
             return true;
@@ -54,7 +54,7 @@ public class Fall : MonoBehaviour {
         {
             return true;
         }
-        if (currentY == 0 || CustomGrid.instance.filled[currentX, currentY - 1] != -1)
+        if (currentY == 0 || CustomGrid.instance.filled[currentY-1, currentX] != -1)
             return false;
         else
             return true;

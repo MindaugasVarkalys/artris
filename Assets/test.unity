@@ -326,7 +326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Width: 46
-  Height: 46
+  Height: 40
   TileHeight: 10
   TileWidth: 10
 --- !u!1 &1153913922
