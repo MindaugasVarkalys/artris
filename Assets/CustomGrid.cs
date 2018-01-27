@@ -20,9 +20,7 @@ public class CustomGrid : MonoBehaviour {
 
             Gizmos.DrawLine(from, to);
         }
-        
-        Vector3 size = new Vector3(TileWidth, TileHeight);
-        Gizmos.DrawCube(GetPosition(0,0), size);
+
     }
     public static CustomGrid instance;
     public int Height = 10;
@@ -42,6 +40,7 @@ public class CustomGrid : MonoBehaviour {
         {
             Destroy(this);
         }
+        DrawGrid();
         filled = new int[Height, Width];
         for (int i = 0; i < Height; i++)
         {
@@ -55,5 +54,37 @@ public class CustomGrid : MonoBehaviour {
 	public Vector3 GetPosition(int x, int y)
     {
         return new Vector3(transform.position.x + TileWidth * (x+0.5f), transform.position.y + TileHeight * (y+0.5f));
+    }
+
+    void DrawLine(Vector3 start, Vector3 end, Color color)
+    {
+        GameObject myLine = new GameObject();
+        myLine.transform.position = start;
+        myLine.AddComponent<LineRenderer>();
+        LineRenderer lr = myLine.GetComponent<LineRenderer>();
+        lr.material = new Material(Shader.Find("Particles/Alpha Blended Premultiply"));
+        lr.startColor = color;
+        lr.endColor = color;
+        lr.startWidth = 0.5f;
+        lr.endWidth = 0.5f;
+        lr.SetPosition(0, start);
+        lr.SetPosition(1, end);
+    }
+    private void DrawGrid()
+    {
+        for (int i = 0; i <= Height; i++)
+        {
+            Vector3 from = new Vector3(transform.position.x, transform.position.y + TileHeight * i);
+            Vector3 to = new Vector3(transform.position.x + Width * TileWidth, transform.position.y + TileHeight * i);
+
+            DrawLine(from, to, Color.black);
+        }
+        for (int j = 0; j <= Width; j++)
+        {
+            Vector3 from = new Vector3(transform.position.x + j * TileWidth, transform.position.y);
+            Vector3 to = new Vector3(transform.position.x + j * TileWidth, transform.position.y + TileHeight * Height);
+
+            DrawLine(from, to, Color.black);
+        }
     }
 }

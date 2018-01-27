@@ -1058,6 +1058,10 @@ MonoBehaviour:
   Block: {fileID: 1186316547852228, guid: 2271ca071cff7ce489bd609ef08a4cb1, type: 2}
   FillingTile: {fileID: 1060703438693452, guid: 85912327ad49bce4593f488cf922d965,
     type: 2}
+  Score: 0
+  PointsForPiece: 100
+  ScoreText: {fileID: 416392124}
+  HighScore: {fileID: 421898311}
 --- !u!4 &1676909936
 Transform:
   m_ObjectHideFlags: 0
