@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
@@ -333,8 +334,11 @@ new byte[,] {{1,1,},{3,3,},},
 new byte[,] {{1,},{1,},{1,},{1,},},
 new byte[,] {{1,1,},{1,1,},},
 };
-	// Use this for initialization
-	void Start () {
+
+    public object SceneM { get; private set; }
+
+    // Use this for initialization
+    void Start () {
         if (instance==null)
         {
             instance = this;
@@ -463,5 +467,19 @@ new byte[,] {{1,1,},{1,1,},},
         {
             PlayerPrefs.SetInt("Highscore", Score);
         }      
+    }
+    public void CheckForWin()
+    {
+        for (int i = 0; i < CustomGrid.instance.filled.GetLength(0); i++)
+        {
+            for (int j = 0; j < CustomGrid.instance.filled.GetLength(1); j++)
+            {
+                if (CustomGrid.instance.filled[i,j]==0)
+                {
+                    return;
+                }
+            }
+        }
+        SceneManager.LoadScene("EndWin");
     }
 }

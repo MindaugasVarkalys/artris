@@ -35,6 +35,7 @@ public class Shape : MonoBehaviour {
             //Debug.Log(DateTime.Now);
             GameManager.instance.Score += (GameManager.instance.PointsForPiece - (DateTime.Now-GameManager.instance.SpawnTime).Seconds);
             GameManager.instance.ScoreText.text = "Score: "+GameManager.instance.Score.ToString();
+            GameManager.instance.CheckForWin();
             GameManager.instance.InstantiateBlock();        
             Debug.Log(GameManager.instance.Score);
             SoundManager.instance.FallSound();
