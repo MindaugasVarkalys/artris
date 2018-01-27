@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,7 +31,10 @@ public class Shape : MonoBehaviour {
         {
             canSpawn = false;
             FillArray();
-            GameManager.instance.InstantiateBlock();
+            //Debug.Log(DateTime.Now);
+            GameManager.instance.Score += (GameManager.instance.PointsForPiece - (DateTime.Now-GameManager.instance.SpawnTime).Seconds);
+            GameManager.instance.InstantiateBlock();        
+            Debug.Log(GameManager.instance.Score);
             CancelInvoke();
         }
     }
