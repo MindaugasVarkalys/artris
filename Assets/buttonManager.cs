@@ -5,10 +5,16 @@ using UnityEngine;
 
 public class buttonManager : MonoBehaviour 
 {
-	public string scene;
+	public string scene1;
+	public string scene2;
 
-	public void LoadScene () 
+	public void LoadSceneTutorial () 
 	{
-		 SceneManager.LoadScene(scene);
+		 SceneManager.LoadScene(scene1);
+	}
+	
+	public void LoadSceneMain () 
+	{
+		 SceneManager.LoadScene(scene2);
 	}
 }
