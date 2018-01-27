@@ -36,6 +36,7 @@ public class Shape : MonoBehaviour {
             GameManager.instance.ScoreText.text = "Score: "+GameManager.instance.Score.ToString();
             GameManager.instance.InstantiateBlock();        
             Debug.Log(GameManager.instance.Score);
+            SoundManager.instance.FallSound();
             CancelInvoke();
         }
     }

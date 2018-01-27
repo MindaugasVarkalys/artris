@@ -383,6 +383,7 @@ new byte[,] {{1,1,},{1,1,},},
         {
             CurrentBlock.transform.GetChild(i).GetComponent<Fall>().currentX -= 1;           
         }
+        SoundManager.instance.MoveSound();
     }
     private void MoveRight()
     {
@@ -396,6 +397,7 @@ new byte[,] {{1,1,},{1,1,},},
         {
             CurrentBlock.transform.GetChild(i).GetComponent<Fall>().currentX += 1;
         }
+        SoundManager.instance.MoveSound();
     }
     public void printGrid()
     {
