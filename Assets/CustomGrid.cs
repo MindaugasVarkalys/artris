@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CustomGrid : MonoBehaviour {
 
@@ -68,6 +69,11 @@ public class CustomGrid : MonoBehaviour {
         lr.endColor = color;
         lr.startWidth = 0.5f;
         lr.endWidth = 0.5f;
+        if (SceneManager.GetActiveScene().name=="test")
+        {
+            lr.startWidth = 1f;
+            lr.endWidth = 1f;
+        }
         lr.SetPosition(0, start);
         lr.SetPosition(1, end);
     }
