@@ -13,9 +13,11 @@ public class SoundManager : MonoBehaviour {
         else
         {
             Destroy(this);
+            return;
         }
         DontDestroyOnLoad(this);
-	}
+        transform.GetComponents<AudioSource>()[0].Play();
+    }
 
     public void ButtonSound()
     {
