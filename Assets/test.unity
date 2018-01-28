@@ -699,6 +699,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4443b9559ed989d47bfb193787e216bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lineMaterial: {fileID: 2100000, guid: 6da40ed3a431895479a1dd06a923cfb1, type: 2}
   Height: 36
   Width: 31
   TileHeight: 10
