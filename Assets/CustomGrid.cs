@@ -65,8 +65,8 @@ public class CustomGrid : MonoBehaviour {
         lr.material = new Material(Shader.Find("Particles/Alpha Blended Premultiply"));
         lr.startColor = color;
         lr.endColor = color;
-        lr.startWidth = 0.5f;
-        lr.endWidth = 0.5f;
+        lr.startWidth = 1f;
+        lr.endWidth = 1f;
         lr.SetPosition(0, start);
         lr.SetPosition(1, end);
     }
