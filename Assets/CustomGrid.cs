@@ -22,6 +22,7 @@ public class CustomGrid : MonoBehaviour {
         }
 
     }
+    public Material lineMaterial;
     public static CustomGrid instance;
     public int Height = 10;
     public int Width = 10;
@@ -62,11 +63,11 @@ public class CustomGrid : MonoBehaviour {
         myLine.transform.position = start;
         myLine.AddComponent<LineRenderer>();
         LineRenderer lr = myLine.GetComponent<LineRenderer>();
-        lr.material = new Material(Shader.Find("Particles/Alpha Blended Premultiply"));
+        lr.material = lineMaterial;//new Material(Shader.Find("Particles/Alpha Blended Premultiply"));
         lr.startColor = color;
         lr.endColor = color;
-        lr.startWidth = 1f;
-        lr.endWidth = 1f;
+        lr.startWidth = 0.5f;
+        lr.endWidth = 0.5f;
         lr.SetPosition(0, start);
         lr.SetPosition(1, end);
     }
