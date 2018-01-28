@@ -46,7 +46,7 @@ public class CustomGrid : MonoBehaviour {
         {
             for (int j = 0; j < Width; j++)
             {
-                filled[i, j] = -1;
+                filled[i, j] = 0;
             }
         }
     }

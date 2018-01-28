@@ -764,7 +764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd78ed9c2f7e46a4b8b69c453fb08551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene1: 
+  scene1: Totorial
   scene2: test
 --- !u!4 &609390959
 Transform:

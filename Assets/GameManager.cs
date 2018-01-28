@@ -5,7 +5,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
     public GameObject Block;
     public static GameManager instance;
     private GameObject CurrentBlock;
@@ -338,8 +339,9 @@ new byte[,] {{1,1,},{1,1,},},
     public object SceneM { get; private set; }
 
     // Use this for initialization
-    void Start () {
-        if (instance==null)
+    void Start()
+    {
+        if (instance == null)
         {
             instance = this;
         }
@@ -355,11 +357,42 @@ new byte[,] {{1,1,},{1,1,},},
         {
             HighScore.text = "Highscore: " + PlayerPrefs.GetInt("Highscore");
         }
-
+        if (SceneManager.GetActiveScene().name != "test")
+        {
+            FullPicture = new byte[,]
+                {
+                { 1,1,1,1,1,4,4,1,},
+                { 1,1,1,4,4,4,4,4,},
+                { 1,1,4,4,1,5,1,4,},
+                { 2,2,2,2,5,5,2,4,},
+                { 3,3,3,2,5,2,2,2,},
+                { 3,3,3,3,5,3,3,2,},
+                { 2,3,3,3,3,3,3,3,},
+                { 2,2,2,2,3,3,3,3,},
+                };
+            blocks = new byte[][,] {
+    new byte[,] {{3,3,},{3,3,},},
+new byte[,] {{3,3,},{3,3,},},
+new byte[,] {{3,3,},{2,2,},},
+new byte[,] {{3,0,},{2,0,},{2,2,},},
+new byte[,] {{2,0,0,},{3,5,3,},},
+new byte[,] {{3,0,},{3,3,},{3,0,},},
+new byte[,] {{2,0,},{2,0,},{3,2,},},
+new byte[,] {{1,4,},{0,4,},{0,2,},},
+new byte[,] {{1,0,},{2,2,},{0,3,},},
+new byte[,] {{1,},{1,},{2,},{3,},},
+new byte[,] {{1,0,},{4,4,},{0,2,},},
+new byte[,] {{4,},{1,},{5,},{5,},},
+new byte[,] {{4,},{5,},{5,},{2,},},
+new byte[,] {{4,1,},{4,4,},},
+new byte[,] {{1,1,4,},{4,0,0,},},
+new byte[,] {{1,1,1,},{0,1,0,},},
+        };
+        }
         CreateDictionary();
         ConstructBlock();
         //InstantiateBlock();
-	}
+    }
 
     public void Update()
     {
@@ -394,7 +427,7 @@ new byte[,] {{1,1,},{1,1,},},
         CurrentBlock.transform.position = new Vector3(CurrentBlock.transform.position.x - CustomGrid.instance.TileWidth, CurrentBlock.transform.position.y);
         for (int i = 0; i < CurrentBlock.transform.childCount; i++)
         {
-            CurrentBlock.transform.GetChild(i).GetComponent<Fall>().currentX -= 1;           
+            CurrentBlock.transform.GetChild(i).GetComponent<Fall>().currentX -= 1;
         }
         SoundManager.instance.MoveSound();
     }
@@ -415,9 +448,9 @@ new byte[,] {{1,1,},{1,1,},},
     public void printGrid()
     {
         string x = "";
-        for (int i = CustomGrid.instance.filled.GetLength(0)-1; i >=0 ; i--)
+        for (int i = CustomGrid.instance.filled.GetLength(0) - 1; i >= 0; i--)
         {
-            
+
             for (int j = 0; j < CustomGrid.instance.filled.GetLength(1); j++)
             {
                 x += CustomGrid.instance.filled[i, j];
@@ -428,21 +461,21 @@ new byte[,] {{1,1,},{1,1,},},
     }
     private void ConstructBlock()
     {
-        byte[,] array= blocks[counter++];
-        CurrentBlock = Instantiate(Block, CustomGrid.instance.GetPosition(CustomGrid.instance.Height/2, CustomGrid.instance.Width), Quaternion.identity);
+        byte[,] array = blocks[counter++];
+        CurrentBlock = Instantiate(Block, CustomGrid.instance.GetPosition(CustomGrid.instance.Height / 2, CustomGrid.instance.Width), Quaternion.identity);
         for (int i = 0; i < array.GetLength(0); i++)
         {
             for (int j = 0; j < array.GetLength(1); j++)
             {
-                if (array[i,j]==0)
+                if (array[i, j] == 0)
                 {
                     continue;
                 }
-                GameObject tile=Instantiate(FillingTile, CustomGrid.instance.GetPosition(CustomGrid.instance.Width / 2 + j, CustomGrid.instance.Height - i+3), Quaternion.identity,CurrentBlock.transform);
+                GameObject tile = Instantiate(FillingTile, CustomGrid.instance.GetPosition(CustomGrid.instance.Width / 2 + j, CustomGrid.instance.Height - i + 6), Quaternion.identity, CurrentBlock.transform);
                 tile.GetComponent<Fall>().currentX = CustomGrid.instance.Width / 2 + j;
-                tile.GetComponent<Fall>().currentY = CustomGrid.instance.Height - i+3;
+                tile.GetComponent<Fall>().currentY = CustomGrid.instance.Height - i + 6;
                 tile.GetComponent<Fall>().color = array[i, j];
-                tile.GetComponent<SpriteRenderer>().color = Colors[array[i,j]];
+                tile.GetComponent<SpriteRenderer>().color = Colors[array[i, j]];
             }
         }
         SpawnTime = DateTime.Now;
@@ -450,23 +483,34 @@ new byte[,] {{1,1,},{1,1,},},
     private void CreateDictionary()
     {
         Colors = new Dictionary<int, Color>();
-        Colors.Add(1, new Color32(128, 128, 128, 255));
-        Colors.Add(2, new Color32(225, 67, 68, 255));
-        Colors.Add(3, new Color32(26, 36, 48, 255));
-        Colors.Add(4, new Color32(162, 180, 200, 255));
-        Colors.Add(5, new Color32(250, 148, 161, 255));
-        Colors.Add(6, new Color32(137, 81, 48, 255));
-        Colors.Add(7, new Color32(254, 255, 255, 255));
-        Colors.Add(8, new Color32(91, 101, 126, 255));
-        Colors.Add(9, new Color32(166, 30, 32, 255));
-        Colors.Add(10, new Color32(100, 46, 20, 255));
+        if (SceneManager.GetActiveScene().name == "test")
+        {
+            Colors.Add(1, new Color32(128, 128, 128, 255));
+            Colors.Add(2, new Color32(225, 67, 68, 255));
+            Colors.Add(3, new Color32(26, 36, 48, 255));
+            Colors.Add(4, new Color32(162, 180, 200, 255));
+            Colors.Add(5, new Color32(250, 148, 161, 255));
+            Colors.Add(6, new Color32(137, 81, 48, 255));
+            Colors.Add(7, new Color32(254, 255, 255, 255));
+            Colors.Add(8, new Color32(91, 101, 126, 255));
+            Colors.Add(9, new Color32(166, 30, 32, 255));
+            Colors.Add(10, new Color32(100, 46, 20, 255));
+        }
+        else
+        {
+            Colors.Add(1, new Color32(60, 127, 225, 255));
+            Colors.Add(2, new Color32(16, 55, 112, 255));
+            Colors.Add(3, new Color32(247, 227, 61, 255));
+            Colors.Add(4, new Color32(44, 181, 13, 255));
+            Colors.Add(5, new Color32(94, 61, 13, 255));
+        }
     }
     public void SaveScore()
     {
-        if (Score>PlayerPrefs.GetInt("Highscore"))
+        if (Score > PlayerPrefs.GetInt("Highscore"))
         {
             PlayerPrefs.SetInt("Highscore", Score);
-        }      
+        }
     }
     public void CheckForWin()
     {
@@ -474,7 +518,7 @@ new byte[,] {{1,1,},{1,1,},},
         {
             for (int j = 0; j < CustomGrid.instance.filled.GetLength(1); j++)
             {
-                if (CustomGrid.instance.filled[i,j]==0)
+                if (CustomGrid.instance.filled[i, j] == 0)
                 {
                     return;
                 }
